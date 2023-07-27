@@ -1,0 +1,97 @@
+[gd_scene load_steps=4 format=3 uid="uid://bexhmm8hm728c"]
+
+[ext_resource type="Script" path="res://main.cs" id="1_ch3bl"]
+[ext_resource type="LabelSettings" uid="uid://c31oy2ca4f3uv" path="res://TippLabel.tres" id="2_0r1tv"]
+[ext_resource type="PackedScene" uid="uid://bgabcdpm73ael" path="res://alert.tscn" id="2_2cpsk"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ch3bl")
+
+[node name="Title" type="Label" parent="."]
+modulate = Color(0.945098, 1, 0, 1)
+layout_mode = 0
+offset_left = 12.0
+offset_top = 9.0
+offset_right = 144.0
+offset_bottom = 35.0
+text = "Zero Sievert: Gun Name Replacer"
+
+[node name="Regions" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -239.0
+offset_top = -454.0
+offset_right = 241.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 30
+
+[node name="RegionGenerate" type="VBoxContainer" parent="Regions"]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="GamePath" type="TextEdit" parent="Regions/RegionGenerate"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "G:\\SteamLibrary\\steamapps\\common\\ZERO Sievert"
+placeholder_text = "File path to Zero SIevert."
+
+[node name="GamePath Tipp" type="Label" parent="Regions/RegionGenerate"]
+layout_mode = 2
+text = "Tipps: Its the folder with the \"ZERO Sievert.exe\".
+You can access it quickly by right-clicking Zero Sievert in your
+Steam Library, then press: \"Manage\" > \"Browse local files\""
+label_settings = ExtResource("2_0r1tv")
+
+[node name="FilePath" type="TextEdit" parent="Regions/RegionGenerate"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "D:\\Users\\malte\\Documents\\Projekts\\ZeroSievertNameReplacer\\ZeroSievertNameReplacer\\Export\\ZS_GNR_WeaponNames.txt"
+placeholder_text = "Path for weapon name file. (includes file name)"
+
+[node name="FilePath Tipp" type="Label" parent="Regions/RegionGenerate"]
+layout_mode = 2
+text = "Tipps: If left empty, generating will place the file in the same folder as
+this executable and set the file path.
+File path includes file name.
+Example: \"C\\Users\\user\\Downloads\\ZS_GNR_WeaponNames.txt\"
+
+You can keep and reuse your old files!"
+label_settings = ExtResource("2_0r1tv")
+
+[node name="RegionApply" type="VBoxContainer" parent="Regions"]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="BtnGenerate" type="Button" parent="Regions/RegionApply"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Generate Name File"
+
+[node name="BtnImport" type="Button" parent="Regions/RegionApply"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Import Name File
+"
+
+[node name="Alert" parent="." instance=ExtResource("2_2cpsk")]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="Regions/RegionApply/BtnGenerate" to="." method="_on_btn_generate_pressed"]
+[connection signal="pressed" from="Regions/RegionApply/BtnImport" to="." method="_on_btn_import_pressed"]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgabcdpm73ael"]
+
+[ext_resource type="Script" path="res://Alert.cs" id="1_nenhe"]
+
+[node name="Alert" type="Node2D"]
+script = ExtResource("1_nenhe")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.478431)
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+initial_position = 1
+size = Vector2i(400, 150)
+unresizable = true
+borderless = true
+max_size = Vector2i(400, 200)
+dialog_text = "Replace Me
+"
+dialog_autowrap = true
+
+[connection signal="confirmed" from="AcceptDialog" to="." method="_on_accept_dialog_confirmed"]

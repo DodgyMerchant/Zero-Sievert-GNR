@@ -1,0 +1,36 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Zero Sievert GNR"
+config/description="Zero Sievert GNR (Gun Name Replacer)
+
+A program that makes replacing the weapon names in the game Zero Sievert less tedious and risky."
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
+run/max_fps=30
+boot_splash/show_image=false
+config/icon="res://Icons/icon_256.png"
+config/windows_native_icon="res://Icons/icon_256.ico"
+
+[display]
+
+window/size/viewport_width=500
+window/size/viewport_height=500
+
+[dotnet]
+
+project/assembly_name="Zero Sievert Name Replacer"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
