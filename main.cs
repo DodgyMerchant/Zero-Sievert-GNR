@@ -102,6 +102,8 @@ public partial class main : Control
             NotificationWindow(jsonErr.Message);
             return;
         }
+
+        NotificationWindow("File Importet Successfully!\nWeapon Names Applied.");
     }
 
     private string LoadFileAsString(string path)
