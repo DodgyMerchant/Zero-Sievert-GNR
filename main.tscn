@@ -46,7 +46,6 @@ size_flags_horizontal = 4
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "G:\\SteamLibrary\\steamapps\\common\\ZERO Sievert"
 placeholder_text = "File path to Zero SIevert."
 
 [node name="GamePath Tipp" type="Label" parent="Regions/RegionGenerate"]
@@ -60,7 +59,6 @@ label_settings = ExtResource("2_0r1tv")
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "D:\\Users\\malte\\Documents\\Projekts\\ZeroSievertNameReplacer\\ZeroSievertNameReplacer\\Export\\ZS_GNR_WeaponNames.txt"
 placeholder_text = "Path for weapon name file. (includes file name)"
 
 [node name="FilePath Tipp" type="Label" parent="Regions/RegionGenerate"]
