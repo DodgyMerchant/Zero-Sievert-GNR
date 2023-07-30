@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zero Sievert Name Replacer", "Zero Sievert Name Replacer.csproj", "{568ADB9E-0065-4884-BBF0-C10B39020A0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zero Sievert GNR", "Zero Sievert GNR.csproj", "{568ADB9E-0065-4884-BBF0-C10B39020A0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

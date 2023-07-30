@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://rblekpqnijyj"]
+
+[ext_resource type="Theme" uid="uid://b3yq5vbq6x7o2" path="res://GameTheme.tres" id="1_e3tpk"]
+[ext_resource type="LabelSettings" uid="uid://c31oy2ca4f3uv" path="res://TippLabel.tres" id="1_qgnfw"]
+
+[node name="TippLabel" type="Label"]
+offset_right = 23.0
+offset_bottom = 23.0
+mouse_filter = 0
+mouse_default_cursor_shape = 16
+theme = ExtResource("1_e3tpk")
+label_settings = ExtResource("1_qgnfw")

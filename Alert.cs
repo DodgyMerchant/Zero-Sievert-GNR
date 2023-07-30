@@ -1,40 +1,48 @@
+using System.Collections.Generic;
 using Godot;
 using System;
 
-public partial class Alert : Node2D
+public partial class Alert : Control
 {
-    AcceptDialog popup;
-    CanvasLayer canvasLayer;
+    Popup MessagePopup;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        popup = GetNode<AcceptDialog>("AcceptDialog");
-        canvasLayer = GetNode<CanvasLayer>("CanvasLayer");
+
+        MessagePopup = GetNode<Popup>("Message");
     }
 
     /// <summary>
     /// Handles the pop up message stuff.
     /// </summary>
-    /// <param name="Message"></param>
-    public void Enable(string Message)
+    /// <param name="title"></param>
+    /// <param name="buttonStr"></param>
+    /// <param name="message"></param>
+    public void Message(string title, string buttonStr, string message)
     {
-        popup.DialogText = Message;
-        popup.Popup();
-
-        canvasLayer.Visible = true;
+        MessagePopup.PopMessage(title, buttonStr, message);
+        Visible = true;
     }
-
     /// <summary>
-    /// Disables message popup.
+    /// 
     /// </summary>
-    public void Disable()
+    /// <param name="title"></param>
+    /// <param name="buttonStr"></param>
+    /// <param name="message"></param>
+    /// <param name="richMessage"></param>
+    public void Message(string title, string buttonStr, string message, string richMessage)
     {
-        canvasLayer.Visible = false;
+        MessagePopup.PopMessageRich(title, buttonStr, message, richMessage);
+        Visible = true;
     }
 
     private void _on_accept_dialog_confirmed()
     {
-        Disable();
+        Visible = false;
+    }
+    private void _on_accept_dialog_canceled()
+    {
+        Visible = false;
     }
 }

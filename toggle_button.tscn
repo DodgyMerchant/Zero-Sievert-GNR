@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://l0b5d5ds0r6s"]
+
+[ext_resource type="Theme" uid="uid://b3yq5vbq6x7o2" path="res://GameTheme.tres" id="1_cvncl"]
+
+[node name="ToggleButton" type="CheckBox"]
+offset_right = 24.0
+offset_bottom = 24.0
+mouse_default_cursor_shape = 16
+theme = ExtResource("1_cvncl")
+text = "Replace Me"

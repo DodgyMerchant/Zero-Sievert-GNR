@@ -17,7 +17,10 @@ A program that makes replacing the weapon names in the game Zero Sievert less te
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
 run/max_fps=30
-boot_splash/show_image=false
+boot_splash/bg_color=Color(0.270588, 0.156863, 0.235294, 1)
+boot_splash/image="res://Icons/icon_256.png"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://Icons/icon_256.png"
 config/windows_native_icon="res://Icons/icon_256.ico"
 
@@ -25,10 +28,11 @@ config/windows_native_icon="res://Icons/icon_256.ico"
 
 window/size/viewport_width=500
 window/size/viewport_height=500
+window/energy_saving/keep_screen_on=false
 
 [dotnet]
 
-project/assembly_name="Zero Sievert Name Replacer"
+project/assembly_name="Zero Sievert GNR"
 
 [rendering]
 

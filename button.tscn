@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bi7vpuevh2s23"]
+
+[ext_resource type="Theme" uid="uid://b3yq5vbq6x7o2" path="res://GameTheme.tres" id="1_v34m4"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(200, 50)
+offset_right = 8.0
+offset_bottom = 8.0
+theme = ExtResource("1_v34m4")
+text = "Replace Me"

@@ -1,14 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgabcdpm73ael"]
+[gd_scene load_steps=4 format=3 uid="uid://bgabcdpm73ael"]
 
 [ext_resource type="Script" path="res://Alert.cs" id="1_nenhe"]
+[ext_resource type="Theme" uid="uid://b3yq5vbq6x7o2" path="res://GameTheme.tres" id="2_pqhv2"]
+[ext_resource type="Script" path="res://Popup.cs" id="3_ne1yn"]
 
-[node name="Alert" type="Node2D"]
+[node name="Alert" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_pqhv2")
 script = ExtResource("1_nenhe")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -16,14 +24,50 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.478431)
 
-[node name="AcceptDialog" type="AcceptDialog" parent="."]
-initial_position = 1
-size = Vector2i(400, 150)
+[node name="Message" type="AcceptDialog" parent="."]
+title = "Replace Me"
+initial_position = 4
+size = Vector2i(300, 275)
 unresizable = true
-borderless = true
-max_size = Vector2i(400, 200)
-dialog_text = "Replace Me
-"
+always_on_top = true
+min_size = Vector2i(300, 200)
+max_size = Vector2i(500, 500)
+ok_button_text = "Replace Me"
+dialog_close_on_escape = false
 dialog_autowrap = true
+script = ExtResource("3_ne1yn")
 
-[connection signal="confirmed" from="AcceptDialog" to="." method="_on_accept_dialog_confirmed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Message"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PopupLabel" type="Label" parent="Message/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Replace Me
+Replace Me
+Replace Me
+Replace Me"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PopupRich" type="RichTextLabel" parent="Message/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+text = "Replace Me rich Replace Me Replace Me rich Replace Me Replace Me rich Replace Me Replace Me rich Replace Me"
+context_menu_enabled = true
+selection_enabled = true
+
+[connection signal="canceled" from="Message" to="." method="_on_accept_dialog_canceled"]
+[connection signal="confirmed" from="Message" to="." method="_on_accept_dialog_confirmed"]

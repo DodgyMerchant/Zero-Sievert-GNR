@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bexhmm8hm728c"]
+[gd_scene load_steps=7 format=3 uid="uid://bexhmm8hm728c"]
 
 [ext_resource type="Script" path="res://main.cs" id="1_ch3bl"]
-[ext_resource type="LabelSettings" uid="uid://c31oy2ca4f3uv" path="res://TippLabel.tres" id="2_0r1tv"]
+[ext_resource type="Theme" uid="uid://b3yq5vbq6x7o2" path="res://GameTheme.tres" id="1_vyn3i"]
 [ext_resource type="PackedScene" uid="uid://bgabcdpm73ael" path="res://alert.tscn" id="2_2cpsk"]
+[ext_resource type="PackedScene" uid="uid://rblekpqnijyj" path="res://tipp_label.tscn" id="3_5wjeq"]
+[ext_resource type="PackedScene" uid="uid://bi7vpuevh2s23" path="res://button.tscn" id="3_a4pn5"]
+[ext_resource type="PackedScene" uid="uid://l0b5d5ds0r6s" path="res://toggle_button.tscn" id="3_ud7j1"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -11,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_vyn3i")
 script = ExtResource("1_ch3bl")
 
 [node name="Title" type="Label" parent="."]
@@ -46,30 +50,40 @@ size_flags_horizontal = 4
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme = ExtResource("1_vyn3i")
 placeholder_text = "File path to Zero SIevert."
 
-[node name="GamePath Tipp" type="Label" parent="Regions/RegionGenerate"]
+[node name="GamePath Tipp" parent="Regions/RegionGenerate" instance=ExtResource("3_5wjeq")]
 layout_mode = 2
-text = "Tipps: Its the folder with the \"ZERO Sievert.exe\".
-You can access it quickly by right-clicking Zero Sievert in your
-Steam Library, then press: \"Manage\" > \"Browse local files\""
-label_settings = ExtResource("2_0r1tv")
+tooltip_text = "You can access the games file directory quickly by:
+Right-clicking Zero Sievert in your Steam Library,
+then press: \"Manage\" > \"Browse local files\""
+text = "Tipp: Its the folder with the \"ZERO Sievert.exe\"."
 
-[node name="FilePath" type="TextEdit" parent="Regions/RegionGenerate"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Regions/RegionGenerate"]
+layout_mode = 2
+
+[node name="FilePath" type="TextEdit" parent="Regions/RegionGenerate/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_vyn3i")
 placeholder_text = "Path for weapon name file. (includes file name)"
 
-[node name="FilePath Tipp" type="Label" parent="Regions/RegionGenerate"]
+[node name="BtnFilePathReset" parent="Regions/RegionGenerate/HBoxContainer" instance=ExtResource("3_a4pn5")]
+custom_minimum_size = Vector2(65, 10)
 layout_mode = 2
-text = "Tipps: If left empty, generating will place the file in the same folder as
-this executable and set the file path.
+text = "Reset"
+
+[node name="TippLabel" parent="Regions/RegionGenerate" instance=ExtResource("3_5wjeq")]
+layout_mode = 2
+mouse_filter = 2
+text = "Defaults to the location of this executable.
 File path includes file name.
 Example: \"C\\Users\\user\\Downloads\\ZS_GNR_WeaponNames.txt\"
 
 You can keep and reuse your old files!"
-label_settings = ExtResource("2_0r1tv")
 
 [node name="RegionApply" type="VBoxContainer" parent="Regions"]
 custom_minimum_size = Vector2(480, 0)
@@ -77,19 +91,42 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="BtnGenerate" type="Button" parent="Regions/RegionApply"]
-custom_minimum_size = Vector2(200, 50)
+[node name="BtnGenerate" parent="Regions/RegionApply" instance=ExtResource("3_a4pn5")]
 layout_mode = 2
 text = "Generate Name File"
 
-[node name="BtnImport" type="Button" parent="Regions/RegionApply"]
-custom_minimum_size = Vector2(200, 50)
+[node name="BtnImport" parent="Regions/RegionApply" instance=ExtResource("3_a4pn5")]
 layout_mode = 2
-text = "Import Name File
-"
+text = "Import Name File"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Regions/RegionApply"]
+layout_mode = 2
+
+[node name="CheckBackup" parent="Regions/RegionApply/HBoxContainer" instance=ExtResource("3_ud7j1")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+tooltip_text = "Automatically creates a backup of
+weapon.json named: \"weapon_GNRBACKUP.json\"."
+button_pressed = true
+text = "Auto Backup"
+
+[node name="CheckSkipMis" parent="Regions/RegionApply/HBoxContainer" instance=ExtResource("3_ud7j1")]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Skips the Notification if there is a mismatch
+between the number of weapons listed in
+game and the Name File."
+text = "Ignore Mismatch"
 
 [node name="Alert" parent="." instance=ExtResource("2_2cpsk")]
 unique_name_in_owner = true
+layout_mode = 1
 
+[connection signal="pressed" from="Regions/RegionGenerate/HBoxContainer/BtnFilePathReset" to="." method="_on_btn_file_path_reset_pressed"]
 [connection signal="pressed" from="Regions/RegionApply/BtnGenerate" to="." method="_on_btn_generate_pressed"]
 [connection signal="pressed" from="Regions/RegionApply/BtnImport" to="." method="_on_btn_import_pressed"]
+[connection signal="toggled" from="Regions/RegionApply/HBoxContainer/CheckBackup" to="." method="_on_check_backup_toggled"]
+[connection signal="toggled" from="Regions/RegionApply/HBoxContainer/CheckSkipMis" to="." method="_on_check_skip_mis_toggled"]
+
+[editable path="Regions/RegionApply/HBoxContainer/CheckBackup"]
